@@ -1,0 +1,15 @@
+body {
+    background: rgb(185, 183, 166);
+    font-size: 16px;
+}
+
+img {
+    -moz-box-shadow: 6px 5px 12px #333333;
+    -webkit-box-shadow: 6px 5px 12px #333333;
+    box-shadow: 6px 5px 12px #333333;
+}
+
+.article {
+    background: rgb(238, 238, 238);
+    border-radius: 0.5em;
+}
