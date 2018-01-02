@@ -5,7 +5,7 @@
 
 body {
   font-family: sans-serif;
-  margin: 24px;
+  margin: 1.5em;
   background: #f0f0f0;
   color: #505050;
 }
@@ -17,10 +17,10 @@ a {
 
 .article {
   display: block;
-  margin: 0 0 0.7em 0;
-  padding: 12px;
+  margin: 1em 0 1.5em 0em;
+  padding: 0px;
   background: white;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
   transition: all 220ms;
 }
@@ -39,9 +39,9 @@ a {
 
 .article h2 {
   text-align: center;
-  font-size: 14px;
+  font-size: 90%;
   text-transform: uppercase;
-  margin: 0 0 12px 0;
+  margin: 0 0 0.15em 0;
 }
 
 .wall {
@@ -53,10 +53,22 @@ a {
   display: block;
   position: relative;
   /*width: 33.333333%;*/
-  width: 25%;
+  width: 20%;
   float: left;
-  padding: 0 12px;
+  padding: 0 1em;
   box-sizing: border-box;
+}
+
+@media (max-width: 1080px) {
+  .wall-column {
+    width: 25%;
+  }
+}
+
+@media (max-width: 780px) {
+  .wall-column {
+    width: 33%;
+  }
 }
 
 @media (max-width: 640px) {

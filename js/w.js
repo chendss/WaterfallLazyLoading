@@ -3,14 +3,13 @@ var imageList = function () {
     for (let i = 1; i <= 38; i++) {
         let img = {
             href: ``,
-            message: `特色信息`,
+            message: `存放一些信息`,
             url: `../images/${i}.jpg`,
         }
         result.push(img)
     }
     return result
 }
-
 var addImage = function (imageParent, img) {
     let url = img.url
     let href = img.href
