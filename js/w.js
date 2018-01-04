@@ -10,6 +10,7 @@ var imageList = function (n = 8) {
     }
     return result
 }
+
 var addImage = function (imageParent, img) {
     let url = img.url
     let href = img.href
@@ -22,6 +23,7 @@ var addImage = function (imageParent, img) {
     `
     imageParent.insertAdjacentHTML('beforeend', htmlText)
 }
+
 /* 添加占位图
  * 
  */
