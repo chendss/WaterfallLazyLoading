@@ -1,6 +1,17 @@
-var imageList = function (n = 8) {
+var dict = {
+    'page': 1,
+    'isLoading': false,
+}
+
+var page = function () {
+    let p = dict.page
+    dict.page += 1
+    return p
+}
+
+var imageList = function () {
     let result = []
-    for (let i = 1; i <= n; i++) {
+    for (let i = 0; i < 20; i++) {
         let img = {
             href: ``,
             message: `存放一些信息`,
@@ -11,39 +22,81 @@ var imageList = function (n = 8) {
     return result
 }
 
-var addImage = function (imageParent, img) {
-    let url = img.url
-    let href = img.href
-    let message = img.message
-    let htmlText = `
-        <a class="article" href="${href}">
-            <img data-src="${url}" class="lazyLoad" />
-            <h2>${message}</h2>
+var columnsIndex = function (columnsLength, imageLength, index = 0) {
+    let result = 0
+    let n = Math.ceil(imageLength / columnsLength)
+    for (let i = 1; i <= n; i++) {
+        if (i * columnsLength < index && (i + 1) * columnsLength >= index) {
+            result = i
+            break
+        }
+    }
+    return result
+}
+
+var htmlText = function () {
+    let lazyClass = ".lazyLoad"
+    let _src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC'
+    let text = `
+        <a class="article">
+            <img data-src="" src="${_src}" class="lazyLoad loading" />
+            <h2>加载中……</h2>
         </a>
     `
-    imageParent.insertAdjacentHTML('beforeend', htmlText)
+    return text
+}
+
+var columnsAddImage = function (columns, i, len) {
+    let n = i
+    let html = htmlText()
+    for (let j = 0; j < columns.length; j++) {
+        if (i >= len) {
+            break
+        }
+        columns[j].insertAdjacentHTML('beforeend', html)
+        n += 1
+    }
+    return n
 }
 
 /* 添加占位图
  * 
  */
-var addBitmap = function () {
-    let lazyClass = ".lazyLoad"
-    let _src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC'
-    let images = document.querySelectorAll(lazyClass)
-    console.log(images.length)
-    images.forEach(img => {
-        img.src = _src
-    })
+var addBitmap = function (imageParent, len) {
+    //  获得每一列
+    //  分割len
+    //  每一份len填入对应的列
+    let columns = Array.from(document.querySelectorAll('.wall-column'))
+    let i = 0
+    while (i < len) {
+        i = columnsAddImage(columns, i, len)
+    }
 }
 
-var loadImage = function (n = 8) {
-    let imgList = imageList(n)
+var addBitmapInit = function (imageParent, len) {
+    let html = htmlText()
+    for (let i = 0; i < len; i++) {
+        imageParent.insertAdjacentHTML('beforeend', html)
+    }
+}
+
+var imgInit = function (apiValue) {
+    let list = apiValue
+    let images = Array.from(document.querySelectorAll('.lazyLoad.loading'))
+    for (let i = 0; i < list.length; i++) {
+        images[i].dataset.src = list[i]
+        images[i].classList.remove('loading')
+    }
+    dict.isLoading = false
+    console.log('请求结束')
+}
+
+var loadImage = function (add = addBitmap) {
+    dict.isLoading = true
+    let p = page()
     let imageParent = document.querySelector('#id-images-all')
-    imgList.forEach(img => {
-        addImage(imageParent, img)
-    })
-    addBitmap()
+    add(imageParent, 20)
+    requestUrl(`images?page=${p}`, imgInit)
 }
 
 var jaLisWallInit = function () {
@@ -58,9 +111,29 @@ var libraryInit = function () {
     jaLisWallInit()
 }
 
+var bindScrollEvent = function () {
+    window.addEventListener('scroll', function (e) {
+        if (isBottom() && !dict.isLoading) {
+            loadImage()
+        }
+    })
+}
+
+var errImage = function () {
+    document.addEventListener("error", function (e) {
+        var elem = e.target;
+        if (elem.tagName.toLowerCase() == 'img') {
+            log('图片爆炸`', e.target)
+            e.target.src = '../images/error.jpg'
+        }
+    }, true)
+}
+
 const _main = function () {
-    loadImage(74)
+    loadImage(addBitmapInit)
     libraryInit()
+    bindScrollEvent()
+    errImage()
 }
 
 _main()

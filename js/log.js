@@ -46,6 +46,20 @@ const log = function () {
             return arg
         }
     })
+    console.log(...args)
+}
+
+const superLog = function () {
+    let args = [...arguments]
+    args = args.map(arg => {
+        let type_ = typeof arg
+        let filterArray = '`|·|;|'.split('|')
+        if (type_ === 'string' && arg.forIncludes(...filterArray)) {
+            return `(${arg}) 类型：${type_}`
+        } else {
+            return arg
+        }
+    })
     let stack = callStack()
     let name = stack[0]
     console.log('主体信息：', ...args, `更多信息：\n函数名：·${name} \n调用栈：·${stack}`)

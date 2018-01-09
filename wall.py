@@ -20,6 +20,7 @@ def url_array():
 
 def page_url(page):
     n = 20
+    page = int(page)
     url_list = url_array()
     url_list_split = [url_list[i:i + n] for i in range(0, len(url_list), n)]
     return url_list_split[page]
@@ -29,7 +30,8 @@ def page_url(page):
 def images():
     args = request.args
     page = args['page']
-    return page_url(page)
+    p_url = page_url(page)
+    return json.dumps(p_url)
 
 
 @app.route('/<path:fn>', )
