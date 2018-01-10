@@ -4,10 +4,6 @@
 * 大量使用es6语法使得代码更简洁
 * 支持响应式和媒体查询
 
-##[GitHub地址]()  大家多多支持～
-
 ![loading.gif](https://github.com/chendss/WaterfallLazyLoading/blob/cyx/images/loading.gif)
-
-
 
 ![lazy.gif](https://github.com/chendss/WaterfallLazyLoading/blob/cyx/images/lazy.gif)
