@@ -39,8 +39,8 @@ var htmlText = function () {
     let _src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC'
     let text = `
         <a class="article">
-            <img data-src="" src="${_src}" class="lazyLoad loading" />
-            <h2>加载中……</h2>
+            <img data-src="" src="../images/loading.gif" class="lazyLoad loading" />
+            <h2 class="loading">加载中……</h2>
         </a>
     `
     return text
@@ -87,6 +87,10 @@ var imgInit = function (apiValue) {
         images[i].dataset.src = list[i]
         images[i].classList.remove('loading')
     }
+    let h2List = Array.from(document.querySelectorAll('h2.loading'))
+    for (let i = 0; i < h2List.length; i++) {
+        h2List[i].remove()
+    }
     dict.isLoading = false
     console.log('请求结束')
 }
@@ -121,10 +125,10 @@ var bindScrollEvent = function () {
 
 var errImage = function () {
     document.addEventListener("error", function (e) {
-        var elem = e.target;
-        if (elem.tagName.toLowerCase() == 'img') {
+        var target = e.target;
+        if (target.tagName.toLowerCase() == 'img') {
             log('图片爆炸`', e.target)
-            e.target.src = '../images/error.jpg'
+            target.src = '../images/error.jpg'
         }
     }, true)
 }

@@ -1,7 +1,3 @@
-/* string 判断多个字符串是否在字符串内 (扩展)
- * 
- * @returns 
- */
 String.prototype.forIncludes = function () {
     let result = false
     let args = [...arguments]
@@ -14,21 +10,49 @@ String.prototype.forIncludes = function () {
     return result
 }
 
-var f = function () {
-    var div = document.querySelector('#imgid')
-    var ulList = div.querySelectorAll('.imglist')
-    var liList = []
+var Filter = function () {
+    let filterList = [
+        'duitang.com',
+        'baidu',
+        'nipic.com',
+        'ph.126.net',
+        'jisuxz.com',
+        'i-2.yxdown.com',
+        'img1.mydrivers.com',
+        'www.duotegame.com',
+        'lmdisk.com',
+        'attimg.dospy.com',
+        'img.lanrentuku.com',
+        'img3.fengniao.com',
+        'img2.pcgames.com',
+        'img2.pconline.com',
+    ]
+    return filterList
+}
+
+var filterUrls = function (ulList) {
+    let (
+        liList = [],
+        filterList = Filter()
+    )
     ulList.forEach(ul => {
         let li = Array.from(ul.childNodes)
         liList = liList.concat(li)
     })
-    var urlList = liList.map((l) => {
+    let urlList = liList.map((l) => {
         return l.dataset.objurl
     }).filter(((li) => {
-        let filterList = 'duitang.com|baidu|nipic.com|ph.126.net|jisuxz.com'.split('|')
         return li !== undefined && !li.forIncludes(...filterList)
     }))
+}
+
+var src = function () {
+    let (
+        div = document.querySelector('#imgid'),
+        ulList = div.querySelectorAll('.imglist'),
+        urlList = filterUrls(ulList)
+    )
     console.log('urlList', JSON.stringify(urlList))
 }
 
-f()
+src()

@@ -15,6 +15,7 @@ def url_array():
     with open('resource/url.txt') as f:
         str_ = f.read()
     url_list = json.loads(str_)
+    print('url_list len', len(url_list))
     return url_list
 
 
