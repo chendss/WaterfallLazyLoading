@@ -40,7 +40,6 @@ var htmlText = function () {
     let text = `
         <a class="article">
             <img data-src="" src="../images/loading.gif" class="lazyLoad loading" />
-            <h2 class="loading">加载中……</h2>
         </a>
     `
     return text
@@ -86,10 +85,6 @@ var imgInit = function (apiValue) {
     for (let i = 0; i < list.length; i++) {
         images[i].dataset.src = list[i]
         images[i].classList.remove('loading')
-    }
-    let h2List = Array.from(document.querySelectorAll('h2.loading'))
-    for (let i = 0; i < h2List.length; i++) {
-        h2List[i].remove()
     }
     dict.isLoading = false
     console.log('请求结束')

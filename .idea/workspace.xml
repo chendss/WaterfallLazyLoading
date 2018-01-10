@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e69afb5-9e4a-44e6-9519-31f9c67fe472" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/getSrc.js" afterPath="$PROJECT_DIR$/js/getSrc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/w.js" afterPath="$PROJECT_DIR$/js/w.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wall.py" afterPath="$PROJECT_DIR$/wall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
