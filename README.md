@@ -5,7 +5,7 @@
 
 [GitHub地址]()  大家多多支持～
 
-![loading.gif](http://upload-images.jianshu.io/upload_images/5692364-63bd3df17e2da54c.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![loading.gif](https://github.com/chendss/WaterfallLazyLoading/blob/cyx/images/loading.gif)
 
 
 
