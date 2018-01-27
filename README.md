@@ -6,4 +6,4 @@
 
 ![loading.gif](https://github.com/chendss/WaterfallLazyLoading/blob/cyx/images/loading.gif)
 
-![lazy.gif](https://github.com/chendss/WaterfallLazyLoading/blob/cyx/images/lazy.gif)
+![lazy.gif](https://pic1.zhimg.com/80/v2-2a603f6ea5f3fb474ac766425597d77a_hd.gif)
