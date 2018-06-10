@@ -1,5 +1,5 @@
 var dict = {
-    'page': 1,
+    'page': 0,
     'isLoading': false,
 }
 
@@ -94,8 +94,12 @@ var loadImage = function (add = addBitmap) {
     dict.isLoading = true
     let p = page()
     let imageParent = document.querySelector('#id-images-all')
-    add(imageParent, 20)
-    requestUrl(`images?page=${p}`, imgInit)
+    let imgSrcList = requestUrl(`/imges?pageIndex=${p}&pageSize=20`)
+    if (imgSrcList.length !== 0) {
+
+        add(imageParent, imgSrcList.length)
+        imgInit(imgSrcList)
+    }
 }
 
 var jaLisWallInit = function () {
@@ -120,7 +124,7 @@ var bindScrollEvent = function () {
 
 var errImage = function () {
     document.addEventListener("error", function (e) {
-        var target = e.target;
+        var target = e.target
         if (target.tagName.toLowerCase() == 'img') {
             log('图片爆炸`', e.target)
             target.src = '../images/error.jpg'

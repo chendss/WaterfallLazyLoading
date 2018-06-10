@@ -45,7 +45,7 @@ const isBottom = function () {
     let scrollY = scrollTop()
     let sHeight = scrollHeight()
     let winHeight = windowHeight()
-    if (scrollY + winHeight === sHeight) {
+    if (scrollY + winHeight >= sHeight) {
         return true
     } else {
         return false
